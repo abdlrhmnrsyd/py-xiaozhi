@@ -24,8 +24,8 @@ class MainModel(BaseModel):
         self._status_text = ""
         self._connected = False
         self._auto_mode = False
-        self._mode_text = "手动对话"
-        self._button_text = "按住后说话"
+        self._mode_text = "Manual Chat"
+        self._button_text = "Hold to Speak"
 
     # ========== Properties ==========
 
@@ -84,8 +84,8 @@ class MainModel(BaseModel):
     def set_auto_mode(self, auto: bool):
         if self._auto_mode != auto:
             self._auto_mode = auto
-            self._mode_text = "自动对话" if auto else "手动对话"
-            self._button_text = "开始对话" if auto else "按住后说话"
+            self._mode_text = "Auto Chat" if auto else "Manual Chat"
+            self._button_text = "Start Chat" if auto else "Hold to Speak"
             self.autoModeChanged.emit()
             self.modeTextChanged.emit()
             self.buttonTextChanged.emit()

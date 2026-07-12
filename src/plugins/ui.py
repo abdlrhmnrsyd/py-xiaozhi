@@ -22,9 +22,9 @@ class UIPlugin(Plugin):
     priority = 60  # UI 需要在其他插件完成后初始化
 
     STATE_TEXT_MAP = {
-        DeviceState.IDLE: "待命",
-        DeviceState.LISTENING: "聆听中...",
-        DeviceState.SPEAKING: "说话中...",
+        DeviceState.IDLE: "Standby",
+        DeviceState.LISTENING: "Listening...",
+        DeviceState.SPEAKING: "Speaking...",
     }
 
     def __init__(self, mode: Optional[str] = None) -> None:
@@ -122,7 +122,7 @@ class UIPlugin(Plugin):
         if state != DeviceState.LISTENING and self._manual_recording:
             self._manual_recording = False
             if self._is_gui:
-                self.view_manager.main_model.set_button_text("按住后说话")
+                self.view_manager.main_model.set_button_text("Hold to Speak")
 
         # 更新状态文本
         if status_text := self.STATE_TEXT_MAP.get(state):
@@ -140,9 +140,9 @@ class UIPlugin(Plugin):
         """处理网络错误事件，更新 UI 状态."""
         if self.view_manager:
             if self._is_gui:
-                self.view_manager.main_model.set_status("未连接", connected=False)
+                self.view_manager.main_model.set_status("Disconnected", connected=False)
             else:
-                self.view_manager.set_status("未连接", connected=False)
+                self.view_manager.set_status("Disconnected", connected=False)
 
     def register_resources(self, pool) -> None:
         view_manager = self.view_manager
@@ -197,7 +197,7 @@ class UIPlugin(Plugin):
 
             # 更新按钮文本
             if self.view_manager and self._is_gui:
-                self.view_manager.main_model.set_button_text("发送")
+                self.view_manager.main_model.set_button_text("Send")
 
             await self._cmd.connect_protocol()
             from src.constants.constants import ListeningMode
@@ -209,7 +209,7 @@ class UIPlugin(Plugin):
 
             # 更新按钮文本
             if self.view_manager and self._is_gui:
-                self.view_manager.main_model.set_button_text("按住后说话")
+                self.view_manager.main_model.set_button_text("Hold to Speak")
 
             await self._cmd.stop_listening()
 
