@@ -15,7 +15,7 @@ logger = get_logger()
 class EmotionService(QObject):
     """表情服务 - 处理表情文件的查找和 URL 转换."""
 
-    EXTENSIONS = (".gif", ".png", ".jpg", ".jpeg", ".webp")
+    EXTENSIONS = (".png", ".gif", ".jpg", ".jpeg", ".webp")
 
     def __init__(self, parent=None):
         super().__init__(parent)

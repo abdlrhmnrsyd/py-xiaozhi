@@ -5,6 +5,9 @@ import QtQuick
 QtObject {
     id: theme
 
+    // ========== 主题切换 ==========
+    property bool darkMode: true
+
     // ========== 响应式断点 ==========
     readonly property int breakpointSm: 480
     readonly property int breakpointMd: 768
@@ -21,40 +24,40 @@ QtObject {
     }
 
     // ========== 颜色 ==========
-    // 主色系
-    readonly property color primary: "#165DFF"
-    readonly property color primaryHover: "#4080FF"
-    readonly property color primaryPressed: "#0E42D2"
-    readonly property color primaryLight: "#E8F3FF"      // 浅蓝背景
-    readonly property color primaryText: "#2196F3"       // 蓝色文字
+    // 主色系 (Electric violet & blue accents)
+    readonly property color primary: darkMode ? "#8B5CF6" : "#165DFF"
+    readonly property color primaryHover: darkMode ? "#A78BFA" : "#4080FF"
+    readonly property color primaryPressed: darkMode ? "#7C3AED" : "#0E42D2"
+    readonly property color primaryLight: darkMode ? "#1E1A3A" : "#E8F3FF"      // 浅蓝背景/暗紫背景
+    readonly property color primaryText: darkMode ? "#A78BFA" : "#2196F3"       // 蓝色文字/浅紫文字
 
     // 功能色
-    readonly property color success: "#00B42A"
-    readonly property color successLight: "#E8FFEA"      // 成功浅背景
-    readonly property color successBorder: "#B7EB8F"     // 成功边框
+    readonly property color success: darkMode ? "#10B981" : "#00B42A"
+    readonly property color successLight: darkMode ? "#064E3B" : "#E8FFEA"      // 成功浅背景
+    readonly property color successBorder: darkMode ? "#059669" : "#B7EB8F"     // 成功边框
 
-    readonly property color warning: "#FF7D00"
-    readonly property color warningLight: "#FFF7E8"      // 警告浅背景
-    readonly property color warningBorder: "#FFE58F"     // 警告边框
+    readonly property color warning: darkMode ? "#F59E0B" : "#FF7D00"
+    readonly property color warningLight: darkMode ? "#78350F" : "#FFF7E8"      // 警告浅背景
+    readonly property color warningBorder: darkMode ? "#D97706" : "#FFE58F"     // 警告边框
 
-    readonly property color error: "#F53F3F"
-    readonly property color errorHover: "#FF7875"        // 错误悬停
-    readonly property color errorLight: "#FFF2F0"        // 错误浅背景
-    readonly property color errorBorder: "#FFCCC7"       // 错误边框
+    readonly property color error: darkMode ? "#EF4444" : "#F53F3F"
+    readonly property color errorHover: darkMode ? "#F87171" : "#FF7875"        // 错误悬停
+    readonly property color errorLight: darkMode ? "#7F1D1D" : "#FFF2F0"        // 错误浅背景
+    readonly property color errorBorder: darkMode ? "#DC2626" : "#FFCCC7"       // 错误边框
 
     // 背景色
-    readonly property color background: "#FFFFFF"
-    readonly property color backgroundSecondary: "#F7F8FA"
-    readonly property color backgroundHover: "#F2F3F5"
+    readonly property color background: darkMode ? "#090D16" : "#FFFFFF"
+    readonly property color backgroundSecondary: darkMode ? "#111827" : "#F7F8FA"
+    readonly property color backgroundHover: darkMode ? "#1F2937" : "#F2F3F5"
 
     // 文字色
-    readonly property color textPrimary: "#1D2129"
-    readonly property color textSecondary: "#4E5969"
-    readonly property color textPlaceholder: "#86909C"
+    readonly property color textPrimary: darkMode ? "#F8FAFC" : "#1D2129"
+    readonly property color textSecondary: darkMode ? "#94A3B8" : "#4E5969"
+    readonly property color textPlaceholder: darkMode ? "#475569" : "#86909C"
 
     // 边框分割线
-    readonly property color border: "#E5E6EB"
-    readonly property color divider: "#F2F3F5"
+    readonly property color border: darkMode ? "#1F2937" : "#E5E6EB"
+    readonly property color divider: darkMode ? "#1F2937" : "#F2F3F5"
 
     // ========== 字体大小 ==========
     readonly property int fontSizeXs: Math.round(10 * scaleFactor)

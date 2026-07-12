@@ -13,6 +13,7 @@ Rectangle {
     property bool showMinimize: true
     property bool showMaximize: false  // 默认不显示最大化
     property bool showClose: true
+    property bool showSettingsButton: false
 
     signal minimizeClicked()
     signal maximizeClicked()
@@ -168,6 +169,64 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: root.closeClicked()
+            }
+        }
+    }
+
+    // ========== Utility Buttons (Settings & Theme Toggle) ==========
+    Row {
+        id: utilityButtons
+        anchors.right: Theme.titleButtonsOnLeft ? parent.right : winButtons.left
+        anchors.rightMargin: Theme.titleButtonsOnLeft ? Theme.spacingMd : Theme.spacingSm
+        anchors.verticalCenter: parent.verticalCenter
+        spacing: Theme.spacingXs
+
+        // Theme Toggle Button (☀️/🌙)
+        Rectangle {
+            width: 32
+            height: 32
+            radius: Theme.radiusSm
+            color: themeToggleMouse.containsMouse ? Theme.backgroundHover : "transparent"
+
+            Text {
+                anchors.centerIn: parent
+                text: Theme.darkMode ? "☀️" : "🌙"
+                font.pixelSize: Theme.fontSizeLg
+                color: themeToggleMouse.containsMouse ? Theme.primary : Theme.textSecondary
+            }
+
+            MouseArea {
+                id: themeToggleMouse
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: Theme.darkMode = !Theme.darkMode
+            }
+        }
+
+        // Settings Button (⚙️)
+        Rectangle {
+            visible: root.showSettingsButton
+            width: 32
+            height: 32
+            radius: Theme.radiusSm
+            color: settingsToggleMouse.containsMouse ? Theme.backgroundHover : "transparent"
+
+            Text {
+                anchors.centerIn: parent
+                text: "⚙️"
+                font.pixelSize: Theme.fontSizeLg
+                color: settingsToggleMouse.containsMouse ? Theme.primary : Theme.textSecondary
+            }
+
+            MouseArea {
+                id: settingsToggleMouse
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    if (eventBridge) eventBridge.onOpenSettings()
+                }
             }
         }
     }

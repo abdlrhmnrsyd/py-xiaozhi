@@ -31,7 +31,12 @@ Window {
         anchors.fill: parent
         anchors.margins: root.isMaximized ? 0 : 1
         radius: root.isMaximized ? 0 : Theme.windowRadius
-        color: Theme.background
+        
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: Theme.background }
+            GradientStop { position: 1.0; color: Theme.backgroundSecondary }
+        }
+        
         antialiasing: true
         border.width: root.isMaximized ? 0 : 1
         border.color: Theme.border

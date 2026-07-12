@@ -36,7 +36,7 @@ class ConfigManager:
             },
         },
         "WAKE_WORD_OPTIONS": {
-            "USE_WAKE_WORD": True,
+            "USE_WAKE_WORD": False,
             "MODEL_PATH": "models/zh",
             "NUM_THREADS": 5,
             "PROVIDER": "cpu",
