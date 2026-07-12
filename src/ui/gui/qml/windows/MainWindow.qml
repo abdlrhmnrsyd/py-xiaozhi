@@ -58,7 +58,7 @@ AppWindow {
 
                         Text {
                             anchors.centerIn: parent
-                            text: (mainModel && mainModel.statusText) ? mainModel.statusText : "待命"
+                            text: (mainModel && mainModel.statusText) ? mainModel.statusText : "Standby"
                             font.pixelSize: Theme.fontSizeMd
                             font.weight: Font.Bold
                             color: Theme.primaryText
@@ -100,7 +100,7 @@ AppWindow {
                         Text {
                             anchors.fill: parent
                             anchors.margins: 10
-                            text: (mainModel && mainModel.ttsText) ? mainModel.ttsText : "待命"
+                            text: (mainModel && mainModel.ttsText) ? mainModel.ttsText : "Standby"
                             font.pixelSize: Theme.fontSizeSm
                             color: Theme.textSecondary
                             horizontalAlignment: Text.AlignHCenter
@@ -131,7 +131,7 @@ AppWindow {
                         Layout.fillWidth: true
                         Layout.maximumWidth: 140
                         Layout.preferredHeight: 38
-                        text: (mainModel && mainModel.buttonText) ? mainModel.buttonText : "按住后说话"
+                        text: (mainModel && mainModel.buttonText) ? mainModel.buttonText : "Hold to Speak"
                         visible: !(mainModel && mainModel.autoMode)
 
                         background: Rectangle {
@@ -157,7 +157,7 @@ AppWindow {
                         Layout.fillWidth: true
                         Layout.maximumWidth: 140
                         Layout.preferredHeight: 38
-                        text: (mainModel && mainModel.buttonText) ? mainModel.buttonText : "开始对话"
+                        text: (mainModel && mainModel.buttonText) ? mainModel.buttonText : "Start Chat"
                         visible: mainModel && mainModel.autoMode
 
                         background: Rectangle {
@@ -183,7 +183,7 @@ AppWindow {
                         Layout.fillWidth: true
                         Layout.maximumWidth: 120
                         Layout.preferredHeight: 38
-                        text: "打断对话"
+                        text: "Interrupt"
 
                         background: Rectangle {
                             color: abortBtn.pressed ? Theme.divider : (abortBtn.hovered ? Theme.backgroundHover : Theme.backgroundSecondary)
@@ -231,7 +231,7 @@ AppWindow {
 
                                 Text {
                                     anchors.fill: parent
-                                    text: "输入文字..."
+                                    text: "Type a message..."
                                     font: textInput.font
                                     color: Theme.textPlaceholder
                                     verticalAlignment: Text.AlignVCenter
@@ -247,7 +247,7 @@ AppWindow {
                             Layout.preferredWidth: 60
                             Layout.maximumWidth: 84
                             Layout.preferredHeight: 38
-                            text: "发送"
+                            text: "Send"
 
                             background: Rectangle {
                                 color: sendBtn.pressed ? Theme.primaryPressed : (sendBtn.hovered ? Theme.primaryHover : Theme.primary)
@@ -273,7 +273,7 @@ AppWindow {
                         Layout.fillWidth: true
                         Layout.maximumWidth: 120
                         Layout.preferredHeight: 38
-                        text: (mainModel && mainModel.modeText) ? mainModel.modeText : "手动对话"
+                        text: (mainModel && mainModel.modeText) ? mainModel.modeText : "Manual Chat"
 
                         background: Rectangle {
                             color: modeBtn.pressed ? Theme.divider : (modeBtn.hovered ? Theme.backgroundHover : Theme.backgroundSecondary)
@@ -300,7 +300,7 @@ AppWindow {
                         Layout.fillWidth: true
                         Layout.maximumWidth: 120
                         Layout.preferredHeight: 38
-                        text: "参数设置"
+                        text: "Settings"
 
                         background: Rectangle {
                             color: settingsBtn.pressed ? Theme.divider : (settingsBtn.hovered ? Theme.backgroundHover : Theme.backgroundSecondary)

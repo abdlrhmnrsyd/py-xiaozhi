@@ -105,13 +105,13 @@ class SettingsModel(BaseModel):
         try:
             with open(self._config_path, "w", encoding="utf-8") as f:
                 json.dump(self._config, f, ensure_ascii=False, indent=2)
-            logger.info("设置已保存")
-            self.statusMessage.emit("配置已保存")
+            logger.info("Settings saved")
+            self.statusMessage.emit("Configuration saved")
             # 发送配置保存信号，触发热重载
             self.configSaved.emit()
         except Exception as e:
-            logger.error(f"保存配置失败: {e}")
-            self.set_error(f"保存配置失败: {e}")
+            logger.error(f"Failed to save configuration: {e}")
+            self.set_error(f"Failed to save configuration: {e}")
 
     @Slot()
     def reload(self):
@@ -120,7 +120,7 @@ class SettingsModel(BaseModel):
         self._load_audio_devices()
         self._load_cameras()
         self.settingsChanged.emit()
-        logger.info("设置已重新加载")
+        logger.info("Settings reloaded")
 
     # ========== 系统选项 ==========
 
@@ -430,7 +430,7 @@ class SettingsModel(BaseModel):
             是否保存成功
         """
         if not self._wake_word:
-            self.statusMessage.emit("请输入唤醒词")
+            self.statusMessage.emit("Please enter a wake word")
             return False
 
         try:
@@ -452,16 +452,16 @@ class SettingsModel(BaseModel):
             with open(keywords_path, "w", encoding="utf-8") as f:
                 f.write(keyword_line + "\n")
 
-            logger.info(f"唤醒词已保存: {self._wake_word} -> {keywords_path}")
-            self.statusMessage.emit(f"唤醒词已保存 ({lang.upper()})")
+            logger.info(f"Wake word saved: {self._wake_word} -> {keywords_path}")
+            self.statusMessage.emit(f"Wake word saved ({lang.upper()})")
 
             # 保存到文件
             self.save()
             return True
 
         except Exception as e:
-            logger.error(f"保存唤醒词失败: {e}", exc_info=True)
-            self.statusMessage.emit(f"保存失败: {e}")
+            logger.error(f"Failed to save wake word: {e}", exc_info=True)
+            self.statusMessage.emit(f"Failed to save: {e}")
             return False
 
     # ========== 摄像头设置 ==========
@@ -591,7 +591,7 @@ class SettingsModel(BaseModel):
     def refreshDevices(self):
         """刷新设备列表."""
         self._load_audio_devices()
-        self.statusMessage.emit("设备列表已刷新")
+        self.statusMessage.emit("Device list refreshed")
 
     def _get_selectedInputIndex(self) -> int:
         """获取当前选中的输入设备索引."""
@@ -709,12 +709,12 @@ class SettingsModel(BaseModel):
 
         idx = self._get_selectedInputIndex()
         if idx < 0 or idx >= len(self._input_devices):
-            self.statusMessage.emit("请先选择输入设备")
+            self.statusMessage.emit("Please select input device first")
             return
 
         device = self._input_devices[idx]
         self._testing_input = True
-        self.statusMessage.emit("开始录音测试...")
+        self.statusMessage.emit("Starting recording test...")
 
         thread = threading.Thread(target=self._do_input_test, args=(device,))
         thread.daemon = True
@@ -727,7 +727,7 @@ class SettingsModel(BaseModel):
             sample_rate = device["sample_rate"]
             duration = 3
 
-            self.statusMessage.emit(f"请对着麦克风说话 ({duration}秒)...")
+            self.statusMessage.emit(f"Please speak into the microphone ({duration}s)...")
             time.sleep(1)
 
             recording = sd.rec(
@@ -743,20 +743,20 @@ class SettingsModel(BaseModel):
             max_amplitude = np.max(np.abs(recording))
 
             if max_amplitude < 0.001:
-                self.statusMessage.emit("[失败] 未检测到音频信号")
+                self.statusMessage.emit("[Failed] No audio signal detected")
                 self.testComplete.emit("input", False)
             elif max_amplitude > 0.8:
-                self.statusMessage.emit("[警告] 音频信号过载")
+                self.statusMessage.emit("[Warning] Audio signal clipping")
                 self.testComplete.emit("input", True)
             else:
                 self.statusMessage.emit(
-                    f"[成功] 录音测试通过 (音量: {max_amplitude:.1%})"
+                    f"[Success] Recording test completed (Volume: {max_amplitude:.1%})"
                 )
                 self.testComplete.emit("input", True)
 
         except Exception as e:
-            logger.error(f"录音测试失败: {e}")
-            self.statusMessage.emit(f"[错误] {str(e)}")
+            logger.error(f"Recording test failed: {e}")
+            self.statusMessage.emit(f"[Error] {str(e)}")
             self.testComplete.emit("input", False)
         finally:
             self._testing_input = False
@@ -769,12 +769,12 @@ class SettingsModel(BaseModel):
 
         idx = self._get_selectedOutputIndex()
         if idx < 0 or idx >= len(self._output_devices):
-            self.statusMessage.emit("请先选择输出设备")
+            self.statusMessage.emit("Please select output device first")
             return
 
         device = self._output_devices[idx]
         self._testing_output = True
-        self.statusMessage.emit("开始播放测试...")
+        self.statusMessage.emit("Starting playback test...")
 
         thread = threading.Thread(target=self._do_output_test, args=(device,))
         thread.daemon = True
@@ -788,7 +788,7 @@ class SettingsModel(BaseModel):
             duration = 2.0
             frequency = 440
 
-            self.statusMessage.emit("播放 440Hz 测试音...")
+            self.statusMessage.emit("Playing 440Hz test tone...")
             time.sleep(0.5)
 
             # 生成测试音
@@ -803,12 +803,12 @@ class SettingsModel(BaseModel):
             sd.play(audio, samplerate=sample_rate, device=device_id)
             sd.wait()
 
-            self.statusMessage.emit("[成功] 播放测试完成")
+            self.statusMessage.emit("[Success] Playback test completed")
             self.testComplete.emit("output", True)
 
         except Exception as e:
-            logger.error(f"播放测试失败: {e}")
-            self.statusMessage.emit(f"[错误] {str(e)}")
+            logger.error(f"Playback test failed: {e}")
+            self.statusMessage.emit(f"[Error] {str(e)}")
             self.testComplete.emit("output", False)
         finally:
             self._testing_output = False
@@ -962,16 +962,16 @@ class SettingsModel(BaseModel):
             for i in range(10):
                 cap = cv2.VideoCapture(i)
                 if cap.isOpened():
-                    cameras.append({"index": i, "name": f"摄像头 {i}"})
+                    cameras.append({"index": i, "name": f"Camera {i}"})
                     cap.release()
         except ImportError:
-            logger.warning("cv2 未安装，无法扫描摄像头")
+            logger.warning("cv2 not installed, cannot scan cameras")
         except Exception as e:
-            logger.error(f"扫描摄像头失败: {e}", exc_info=True)
+            logger.error(f"Failed to scan cameras: {e}", exc_info=True)
 
         self._cameras = cameras
         self.devicesChanged.emit()
-        self.statusMessage.emit("摄像头列表已刷新")
+        self.statusMessage.emit("Camera list refreshed")
 
     @Slot(result=list)
     def getCameras(self) -> list:
@@ -996,7 +996,7 @@ class SettingsModel(BaseModel):
         if 0 <= index < len(self._cameras):
             camera = self._cameras[index]
             self._set_value("CAMERA.camera_index", camera["index"])
-            logger.info(f"选择摄像头: {camera['name']}")
+            logger.info(f"Selected camera: {camera['name']}")
 
     selectedCameraIndex = Property(
         int, _get_selectedCameraIndex, _set_selectedCameraIndex, notify=settingsChanged
@@ -1006,16 +1006,16 @@ class SettingsModel(BaseModel):
     def testCamera(self):
         """测试摄像头，捕获一帧并显示."""
         if not self._cameras:
-            self.statusMessage.emit("没有可用的摄像头")
+            self.statusMessage.emit("No available cameras")
             return
 
         idx = self._get_selectedCameraIndex()
         if idx < 0 or idx >= len(self._cameras):
-            self.statusMessage.emit("请先选择摄像头")
+            self.statusMessage.emit("Please select a camera first")
             return
 
         camera = self._cameras[idx]
-        self.statusMessage.emit(f"正在测试摄像头 {camera['name']}...")
+        self.statusMessage.emit(f"Testing camera {camera['name']}...")
 
         thread = threading.Thread(target=self._do_camera_test, args=(camera,))
         thread.daemon = True
@@ -1030,7 +1030,7 @@ class SettingsModel(BaseModel):
             cap = cv2.VideoCapture(camera_id)
 
             if not cap.isOpened():
-                self.statusMessage.emit("[失败] 无法打开摄像头")
+                self.statusMessage.emit("[Failed] Unable to open camera")
                 return
 
             # 设置分辨率
@@ -1048,17 +1048,17 @@ class SettingsModel(BaseModel):
             cap.release()
 
             if not ret or frame is None:
-                self.statusMessage.emit("[失败] 无法捕获图像")
+                self.statusMessage.emit("[Failed] Unable to capture frame")
                 return
 
             # 获取实际分辨率
             actual_height, actual_width = frame.shape[:2]
             self.statusMessage.emit(
-                f"[成功] 摄像头正常 (分辨率: {actual_width}x{actual_height})"
+                f"[Success] Camera test completed (Resolution: {actual_width}x{actual_height})"
             )
 
         except ImportError:
-            self.statusMessage.emit("[错误] cv2 未安装")
+            self.statusMessage.emit("[Error] cv2 not installed")
         except Exception as e:
-            logger.error(f"摄像头测试失败: {e}")
-            self.statusMessage.emit(f"[错误] {str(e)}")
+            logger.error(f"Camera test failed: {e}")
+            self.statusMessage.emit(f"[Error] {str(e)}")
