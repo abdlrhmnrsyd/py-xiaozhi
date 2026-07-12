@@ -15,7 +15,7 @@ ScrollView {
 
         // 页面标题
         Text {
-            text: "系统选项"
+            text: "System Options"
             font.pixelSize: Theme.fontSizeXl
             font.weight: Font.DemiBold
             color: Theme.textPrimary
@@ -28,7 +28,7 @@ ScrollView {
 
             // 区域标题
             Text {
-                text: "基本信息"
+                text: "Basic Info"
                 font.pixelSize: Theme.fontSizeMd
                 font.weight: Font.Medium
                 color: Theme.textSecondary
@@ -42,7 +42,7 @@ ScrollView {
                 columnSpacing: Theme.spacingLg
 
                 Text {
-                    text: "客户端 ID"
+                    text: "Client ID"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -52,7 +52,7 @@ ScrollView {
                     Layout.fillWidth: true
                     text: settingsModel ? settingsModel.clientId : ""
                     onEditingFinished: if (settingsModel) settingsModel.clientId = text
-                    placeholderText: "自动生成"
+                    placeholderText: "Auto-generated"
                     font.pixelSize: Theme.fontSizeSm
                     background: Rectangle {
                         radius: Theme.radiusSm
@@ -62,7 +62,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "设备 ID"
+                    text: "Device ID"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -72,7 +72,7 @@ ScrollView {
                     Layout.fillWidth: true
                     text: settingsModel ? settingsModel.deviceId : ""
                     onEditingFinished: if (settingsModel) settingsModel.deviceId = text
-                    placeholderText: "自动生成"
+                    placeholderText: "Auto-generated"
                     font.pixelSize: Theme.fontSizeSm
                     background: Rectangle {
                         radius: Theme.radiusSm
@@ -82,7 +82,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "回声消除"
+                    text: "Echo Cancellation"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -107,7 +107,7 @@ ScrollView {
             spacing: Theme.spacingMd
 
             Text {
-                text: "网络配置"
+                text: "Network Settings"
                 font.pixelSize: Theme.fontSizeMd
                 font.weight: Font.Medium
                 color: Theme.textSecondary
@@ -140,7 +140,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "访问令牌"
+                    text: "Access Token"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -154,7 +154,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "OTA 版本 URL"
+                    text: "OTA Version URL"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -173,7 +173,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "授权 URL"
+                    text: "Auth URL"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -192,7 +192,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "激活版本"
+                    text: "Activation Version"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -223,7 +223,7 @@ ScrollView {
             spacing: Theme.spacingMd
 
             Text {
-                text: "MQTT 配置"
+                text: "MQTT Config"
                 font.pixelSize: Theme.fontSizeMd
                 font.weight: Font.Medium
                 color: Theme.textSecondary
@@ -236,7 +236,7 @@ ScrollView {
                 columnSpacing: Theme.spacingLg
 
                 Text {
-                    text: "服务端点"
+                    text: "Server Endpoint"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -256,7 +256,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "客户端 ID"
+                    text: "Client ID"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -275,7 +275,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "用户名"
+                    text: "Username"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -294,7 +294,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "密码"
+                    text: "Password"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -308,7 +308,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "发布主题"
+                    text: "Publish Topic"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100
@@ -327,7 +327,7 @@ ScrollView {
                 }
 
                 Text {
-                    text: "订阅主题"
+                    text: "Subscribe Topic"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 100

@@ -13,17 +13,16 @@ AppWindow {
     height: 550
     minimumWidth: 600
     minimumHeight: 450
-    title: "参数设置"
+    title: "Settings"
     visible: false
 
-    // Tab 配置
     readonly property var tabConfig: [
-        { name: "系统选项", component: "SystemOptionsTab.qml" },
-        { name: "唤醒词", component: "WakeWordTab.qml" },
-        { name: "摄像头", component: "CameraTab.qml" },
-        { name: "音频设备", component: "AudioDeviceTab.qml" },
-        { name: "快捷键", component: "ShortcutsTab.qml" },
-        { name: "音乐", component: "MusicTab.qml" }
+        { name: "System Options", component: "SystemOptionsTab.qml" },
+        { name: "Wake Word", component: "WakeWordTab.qml" },
+        { name: "Camera", component: "CameraTab.qml" },
+        { name: "Audio Device", component: "AudioDeviceTab.qml" },
+        { name: "Shortcuts", component: "ShortcutsTab.qml" },
+        { name: "Music", component: "MusicTab.qml" }
     ]
 
     // 直接使用 ColumnLayout，不需要额外的 Rectangle 层
@@ -34,7 +33,7 @@ AppWindow {
             // 自定义标题栏 - 平台自适应
             TitleBar {
                 Layout.fillWidth: true
-                title: "参数设置"
+                title: "Settings"
                 showMaximize: true
                 onMinimizeClicked: root.showMinimized()
                 onMaximizeClicked: {
@@ -205,7 +204,7 @@ AppWindow {
                         id: resetBtn
                         Layout.preferredWidth: 80
                         Layout.preferredHeight: 34
-                        text: "重置"
+                        text: "Reset"
 
                         background: Rectangle {
                             color: resetBtn.pressed ? Theme.errorLight : (resetBtn.hovered ? Theme.errorLight : "transparent")
@@ -232,7 +231,7 @@ AppWindow {
                         id: cancelBtn
                         Layout.preferredWidth: 80
                         Layout.preferredHeight: 34
-                        text: "取消"
+                        text: "Cancel"
 
                         background: Rectangle {
                             color: cancelBtn.pressed ? Theme.divider : (cancelBtn.hovered ? Theme.backgroundHover : Theme.backgroundSecondary)
@@ -257,7 +256,7 @@ AppWindow {
                         id: saveBtn
                         Layout.preferredWidth: 80
                         Layout.preferredHeight: 34
-                        text: "保存"
+                        text: "Save"
 
                         background: Rectangle {
                             color: saveBtn.pressed ? Theme.primaryPressed : (saveBtn.hovered ? Theme.primaryHover : Theme.primary)

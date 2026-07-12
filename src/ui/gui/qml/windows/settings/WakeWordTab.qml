@@ -15,7 +15,7 @@ ScrollView {
 
         // 页面标题
         Text {
-            text: "唤醒词设置"
+            text: "Wake Word Settings"
             font.pixelSize: Theme.fontSizeXl
             font.weight: Font.DemiBold
             color: Theme.textPrimary
@@ -27,7 +27,7 @@ ScrollView {
             spacing: Theme.spacingMd
 
             Text {
-                text: "唤醒词"
+                text: "Wake Word"
                 font.pixelSize: Theme.fontSizeMd
                 font.weight: Font.Medium
                 color: Theme.textSecondary
@@ -39,7 +39,7 @@ ScrollView {
                 spacing: Theme.spacingMd
 
                 Text {
-                    text: "启用唤醒词"
+                    text: "Enable Wake Word"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                 }
@@ -64,7 +64,7 @@ ScrollView {
                 spacing: Theme.spacingMd
 
                 Text {
-                    text: "唤醒词"
+                    text: "Wake Word"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 80
@@ -75,7 +75,7 @@ ScrollView {
                     Layout.fillWidth: true
                     text: settingsModel ? settingsModel.wakeWord : ""
                     onTextChanged: if (settingsModel && text !== settingsModel.wakeWord) settingsModel.wakeWord = text
-                    placeholderText: "输入唤醒词，如「小智」或「Hey Jarvis」"
+                    placeholderText: "Enter wake word, e.g., \"Xiao Zhi\" or \"Hey Jarvis\""
                     font.pixelSize: Theme.fontSizeSm
                     background: Rectangle {
                         radius: Theme.radiusSm
@@ -95,7 +95,7 @@ ScrollView {
                     Text {
                         id: langLabel
                         anchors.centerIn: parent
-                        text: settingsModel && settingsModel.wakeWordLang === "zh" ? "中文" : "English"
+                        text: settingsModel && settingsModel.wakeWordLang === "zh" ? "Chinese" : "English"
                         font.pixelSize: Theme.fontSizeXs
                         color: settingsModel && settingsModel.wakeWordLang === "zh" ? Theme.primary : Theme.success
                     }
@@ -119,7 +119,7 @@ ScrollView {
                     spacing: 4
 
                     Text {
-                        text: "转换预览"
+                        text: "Conversion Preview"
                         font.pixelSize: Theme.fontSizeXs
                         color: Theme.textPlaceholder
                     }
@@ -142,7 +142,7 @@ ScrollView {
                 Item { Layout.fillWidth: true }
 
                 Button {
-                    text: "保存唤醒词"
+                    text: "Save Wake Word"
                     implicitHeight: 36
                     implicitWidth: 120
 
@@ -178,7 +178,7 @@ ScrollView {
             spacing: Theme.spacingMd
 
             Text {
-                text: "检测参数"
+                text: "Detection Settings"
                 font.pixelSize: Theme.fontSizeMd
                 font.weight: Font.Medium
                 color: Theme.textSecondary
@@ -192,7 +192,7 @@ ScrollView {
 
                 // 线程数
                 Text {
-                    text: "线程数"
+                    text: "Threads"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 80
@@ -208,14 +208,14 @@ ScrollView {
                 }
 
                 Text {
-                    text: "建议设置为 CPU 核心数"
+                    text: "Recommended to be set to CPU core count"
                     font.pixelSize: Theme.fontSizeXs
                     color: Theme.textPlaceholder
                 }
 
                 // 关键词得分
                 Text {
-                    text: "关键词得分"
+                    text: "Keyword Score"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 80
@@ -240,7 +240,7 @@ ScrollView {
 
                 // 关键词阈值
                 Text {
-                    text: "关键词阈值"
+                    text: "Keyword Threshold"
                     font.pixelSize: Theme.fontSizeSm
                     color: Theme.textSecondary
                     Layout.preferredWidth: 80
@@ -275,7 +275,7 @@ ScrollView {
         // 提示信息
         Text {
             Layout.fillWidth: true
-            text: "支持中文和英文唤醒词。中文会自动转换为拼音格式，英文使用 BPE 分词。得分越高越严格，阈值越低越敏感。"
+            text: "Supports Chinese and English wake words. Chinese is automatically converted to Pinyin, and English uses BPE tokenization. A higher score is stricter, a lower threshold is more sensitive."
             font.pixelSize: Theme.fontSizeSm
             color: Theme.textPlaceholder
             wrapMode: Text.WordWrap

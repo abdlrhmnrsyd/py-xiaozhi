@@ -32,7 +32,7 @@ ScrollView {
             // model 设置后重新同步 currentIndex
             inputCombo.currentIndex = settingsModel.selectedInputIndex
             outputCombo.currentIndex = settingsModel.selectedOutputIndex
-            addLog("设备列表已加载")
+            addLog("Device list loaded")
         }
     }
 
@@ -45,7 +45,7 @@ ScrollView {
                 // model 设置后重新同步 currentIndex
                 inputCombo.currentIndex = settingsModel.selectedInputIndex
                 outputCombo.currentIndex = settingsModel.selectedOutputIndex
-                addLog("设备列表已刷新")
+                addLog("Device list refreshed")
             }
         }
         function onTestComplete(type, success) {
@@ -70,7 +70,7 @@ ScrollView {
             spacing: Theme.spacingMd
 
             Text {
-                text: "音频设备"
+                text: "Audio Device"
                 font.pixelSize: Theme.fontSizeXl
                 font.weight: Font.DemiBold
                 color: Theme.textPrimary
@@ -79,7 +79,7 @@ ScrollView {
             Item { Layout.fillWidth: true }
 
             Button {
-                text: "刷新设备"
+                text: "Refresh Devices"
                 Layout.preferredHeight: 32
 
                 background: Rectangle {
@@ -105,7 +105,7 @@ ScrollView {
             spacing: Theme.spacingMd
 
             Text {
-                text: "输入设备 (麦克风)"
+                text: "Input Device (Microphone)"
                 font.pixelSize: Theme.fontSizeMd
                 font.weight: Font.Medium
                 color: Theme.textSecondary
@@ -126,7 +126,7 @@ ScrollView {
                 }
 
                 Button {
-                    text: root.inputTesting ? "测试中..." : "测试"
+                    text: root.inputTesting ? "Testing..." : "Test"
                     enabled: !root.inputTesting
                     Layout.preferredWidth: 80
                     Layout.preferredHeight: 32
@@ -182,7 +182,7 @@ ScrollView {
             spacing: Theme.spacingMd
 
             Text {
-                text: "输出设备 (扬声器)"
+                text: "Output Device (Speaker)"
                 font.pixelSize: Theme.fontSizeMd
                 font.weight: Font.Medium
                 color: Theme.textSecondary
@@ -203,7 +203,7 @@ ScrollView {
                 }
 
                 Button {
-                    text: root.outputTesting ? "测试中..." : "测试"
+                    text: root.outputTesting ? "Testing..." : "Test"
                     enabled: !root.outputTesting
                     Layout.preferredWidth: 80
                     Layout.preferredHeight: 32
@@ -259,7 +259,7 @@ ScrollView {
             spacing: Theme.spacingMd
 
             Text {
-                text: "Opus 输出采样率"
+                text: "Opus Output Sample Rate"
                 font.pixelSize: Theme.fontSizeMd
                 font.weight: Font.Medium
                 color: Theme.textSecondary
@@ -272,12 +272,12 @@ ScrollView {
                 XComboBox {
                     id: sampleRateCombo
                     Layout.fillWidth: true
-                    model: ["24000 Hz (官方服务器)", "16000 Hz (第三方服务器)"]
+                    model: ["24000 Hz (Official Server)", "16000 Hz (Third-party Server)"]
                     currentIndex: settingsModel ? (settingsModel.opusOutputSampleRate === 24000 ? 0 : 1) : 0
                     onActivated: function(index) {
                         if (settingsModel) {
                             settingsModel.opusOutputSampleRate = (index === 0) ? 24000 : 16000
-                            addLog("Opus 输出采样率已设置为 " + (index === 0 ? "24000" : "16000") + " Hz")
+                            addLog("Opus output sample rate set to " + (index === 0 ? "24000" : "16000") + " Hz")
                         }
                     }
                     font.pixelSize: Theme.fontSizeSm
@@ -295,7 +295,7 @@ ScrollView {
                     anchors.left: parent.left
                     anchors.leftMargin: Theme.spacingMd
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "官方服务器使用 24kHz，第三方服务器通常使用 16kHz"
+                    text: "Official server uses 24kHz, third-party servers usually use 16kHz"
                     font.pixelSize: Theme.fontSizeXs
                     color: Theme.textPlaceholder
                 }
@@ -315,7 +315,7 @@ ScrollView {
             spacing: Theme.spacingMd
 
             Text {
-                text: "音频帧长度"
+                text: "Audio Frame Duration"
                 font.pixelSize: Theme.fontSizeMd
                 font.weight: Font.Medium
                 color: Theme.textSecondary
@@ -328,7 +328,7 @@ ScrollView {
                 XComboBox {
                     id: frameDurationCombo
                     Layout.fillWidth: true
-                    model: ["20 ms (低延迟)", "40 ms (平衡)", "60 ms (低CPU)"]
+                    model: ["20 ms (Low Latency)", "40 ms (Balanced)", "60 ms (Low CPU)"]
                     currentIndex: {
                         if (!settingsModel) return 0
                         var duration = settingsModel.frameDuration
@@ -341,7 +341,7 @@ ScrollView {
                         if (settingsModel) {
                             var durations = [20, 40, 60]
                             settingsModel.frameDuration = durations[index]
-                            addLog("音频帧长度已设置为 " + durations[index] + " ms")
+                            addLog("Audio frame duration set to " + durations[index] + " ms")
                         }
                     }
                     font.pixelSize: Theme.fontSizeSm
@@ -359,7 +359,7 @@ ScrollView {
                     anchors.left: parent.left
                     anchors.leftMargin: Theme.spacingMd
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "20ms 低延迟高CPU，60ms 高延迟低CPU（适合树莓派）"
+                    text: "20ms is low latency/high CPU, 60ms is high latency/low CPU (suited for Raspberry Pi)"
                     font.pixelSize: Theme.fontSizeXs
                     color: Theme.textPlaceholder
                 }
@@ -369,7 +369,7 @@ ScrollView {
         // 提示信息
         Text {
             Layout.fillWidth: true
-            text: "点击测试按钮验证设备是否正常工作。输入测试会录制 3 秒音频，输出测试会播放 440Hz 测试音。"
+            text: "Click the test button to verify if the device works normally. The input test records 3 seconds of audio, and the output test plays a 440Hz test tone."
             font.pixelSize: Theme.fontSizeSm
             color: Theme.textPlaceholder
             wrapMode: Text.WordWrap
@@ -391,7 +391,7 @@ ScrollView {
                 Layout.fillWidth: true
 
                 Text {
-                    text: "状态日志"
+                    text: "Status Log"
                     font.pixelSize: Theme.fontSizeMd
                     font.weight: Font.Medium
                     color: Theme.textSecondary
@@ -400,7 +400,7 @@ ScrollView {
                 Item { Layout.fillWidth: true }
 
                 Button {
-                    text: "清除日志"
+                    text: "Clear Log"
                     Layout.preferredHeight: 28
 
                     background: Rectangle {
@@ -418,7 +418,7 @@ ScrollView {
 
                     onClicked: {
                         root.statusLogs = []
-                        addLog("日志已清除")
+                        addLog("Logs cleared")
                     }
                 }
             }
